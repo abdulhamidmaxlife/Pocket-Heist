@@ -3,6 +3,7 @@
 // when not logged in --> to /login
 
 import { Clock8 } from "lucide-react"
+import Link from "next/link"
 
 export default function Home() {
   return (
@@ -25,7 +26,7 @@ export default function Home() {
           and a healthy disregard for corporate monotony. Assemble your crew,
           plan your moves, and pull off the impossible: making Monday mornings
           actually interesting.
-        </p>
+        </p>        
       </div>
     </div>
   )

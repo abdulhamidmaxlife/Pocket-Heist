@@ -43,3 +43,6 @@ svg.logo {
 .form-title {
   @apply text-center text-xl font-bold;
 }
+.btn {
+  @apply inline-block px-6 py-3 rounded-lg font-semibold text-heading bg-primary transition-opacity hover:opacity-80;
+}
