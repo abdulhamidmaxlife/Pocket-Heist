@@ -1,0 +1,5 @@
+@reference "../../app/globals.css";
+
+.footer {
+  @apply text-center text-sm py-6 text-body;
+}
