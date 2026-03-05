@@ -1,0 +1,24 @@
+@reference "../../app/globals.css";
+
+.formContainer {
+  @apply mx-auto p-8 rounded-lg;
+  max-width: 440px;
+  background-color: var(--color-light);
+}
+
+.form {
+  @apply flex flex-col mt-6;
+}
+
+.footerText {
+  @apply text-center mt-6;
+  color: var(--color-body);
+}
+
+.footerLink {
+  color: var(--color-primary);
+}
+
+.footerLink:hover {
+  @apply opacity-80;
+}

@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 import { Clock8 } from "lucide-react"
+=======
+import { Clock8, Plus } from "lucide-react"
+>>>>>>> 4952352 (first Commit)
 import Link from "next/link"
 import styles from "./Navbar.module.css"
 
@@ -17,7 +21,11 @@ export default function Navbar() {
         </header>
         <ul>
           <li>
+<<<<<<< HEAD
             <Link href="/heists/create" className="btn">Create Heist</Link>
+=======
+            <Link href="/heists/create" className="btn"><Plus size={16} strokeWidth={2.5} />Create Heist</Link>
+>>>>>>> 4952352 (first Commit)
           </li>
         </ul>
       </nav>
