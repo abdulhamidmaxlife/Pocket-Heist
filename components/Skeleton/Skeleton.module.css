@@ -1,0 +1,41 @@
+@reference "../../app/globals.css";
+
+.skeleton {
+  background: var(--color-lighter);
+  border-radius: 8px;
+  animation: pulse 1.5s ease-in-out infinite;
+}
+
+.circle {
+  border-radius: 50%;
+}
+
+.text {
+  height: 16px;
+  width: 100%;
+}
+
+.rect {
+  width: 100%;
+}
+
+.card {
+  @apply flex flex-col gap-4 p-6 bg-light rounded-xl;
+}
+
+.header {
+  @apply flex items-center gap-4;
+}
+
+.headerText {
+  @apply flex flex-col gap-2 flex-1;
+}
+
+@keyframes pulse {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
+}

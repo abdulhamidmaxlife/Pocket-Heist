@@ -1,0 +1,39 @@
+@reference "../../app/globals.css";
+
+.inputWrapper {
+  @apply mb-4;
+}
+
+.label {
+  @apply block mb-2 font-semibold;
+  color: var(--color-heading);
+}
+
+.inputContainer {
+  @apply relative;
+}
+
+.input {
+  @apply w-full px-4 py-3 rounded-lg;
+  background-color: var(--color-lighter);
+  color: var(--color-body);
+  border: 1px solid transparent;
+}
+
+.input:focus {
+  outline: none;
+  border-color: var(--color-primary);
+}
+
+.inputContainer:has(.iconButton) .input {
+  @apply pr-12;
+}
+
+.iconButton {
+  @apply absolute right-3 top-1/2 -translate-y-1/2 cursor-pointer;
+  color: var(--color-body);
+}
+
+.iconButton:hover {
+  color: var(--color-heading);
+}

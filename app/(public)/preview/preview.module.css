@@ -1,0 +1,15 @@
+@reference "../../globals.css";
+
+.grid {
+  @apply grid gap-6 my-8;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+}
+
+.sectionTitle {
+  @apply mt-12 mb-4 text-xl;
+}
+
+.variants {
+  @apply flex flex-col gap-4 p-6 bg-light rounded-xl;
+  max-width: 400px;
+}
