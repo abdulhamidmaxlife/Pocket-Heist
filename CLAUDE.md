@@ -85,5 +85,8 @@ import Navbar from "@/components/Navbar"
 - No Tailwind classes directly in templates unless just one; use `@apply` for multiple classes
 - Minimal dependencies
 - Functional components and React hooks only; no class components
+- React components to use barrel export pattern
+- Create Reusable components where possible; avoid one-off components
+- Use TypeScript with strict types; prefer interfaces and type aliases over `type` when defining object   shapes
 - No `any` type; prefer specific types or generics
 - Use `git switch -c` for new branches (not `git checkout`)
