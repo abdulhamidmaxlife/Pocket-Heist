@@ -18,6 +18,7 @@ See `_specs/auth-state-management.md` for detailed requirements and acceptance c
 
 **Key Decisions**:
 - Use Firebase's `onAuthStateChanged` listener for real-time auth state synchronization
+- Create `app/providers.tsx` as Client Component wrapper to keep root layout as Server Component
 - Wrap at root layout level to provide context to both `(public)` and `(dashboard)` route groups
 - Separate concerns: AuthContext (provider), useUser (consumer hook), types (interfaces)
 - Follow project's barrel export pattern for clean imports
@@ -25,6 +26,9 @@ See `_specs/auth-state-management.md` for detailed requirements and acceptance c
 ### File Structure
 
 ```
+app/
+└── providers.tsx         # Client Component wrapper for all providers
+
 lib/auth/
 ├── index.ts              # Barrel export
 ├── types.ts              # TypeScript interfaces (AuthContextValue, AuthProviderProps)
@@ -141,15 +145,39 @@ export { useUser } from "./useUser"
 export type { AuthContextValue } from "./types"
 ```
 
-### 5. Update Root Layout
+### 5. Create Providers Wrapper
+
+**File**: `app/providers.tsx`
+
+```typescript
+"use client"
+
+import { AuthProvider } from "@/lib/auth"
+
+interface ProvidersProps {
+  children: React.ReactNode
+}
+
+export function Providers({ children }: ProvidersProps) {
+  return <AuthProvider>{children}</AuthProvider>
+}
+```
+
+**Rationale**:
+- Separates client-side provider logic from server-side root layout
+- Allows root layout to remain a Server Component
+- Provides a centralized location for all future providers (theme, i18n, etc.)
+- Follows Next.js best practice for App Router architecture
+
+### 6. Update Root Layout
 
 **File**: `app/layout.tsx`
 
-Add `AuthProvider` wrapper:
+Add `Providers` wrapper:
 
 ```typescript
 import type { Metadata } from "next"
-import { AuthProvider } from "@/lib/auth"
+import { Providers } from "./providers"
 import "@/app/globals.css"
 
 export const metadata: Metadata = {
@@ -165,18 +193,18 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body>
-        <AuthProvider>
+        <Providers>
           {children}
-        </AuthProvider>
+        </Providers>
       </body>
     </html>
   )
 }
 ```
 
-**Why root layout**: Ensures context is available to both `(public)` and `(dashboard)` route groups.
+**Why root layout**: Ensures context is available to both `(public)` and `(dashboard)` route groups while keeping layout as Server Component.
 
-### 6. Update Components to Use Auth (Example: Navbar)
+### 7. Update Components to Use Auth (Example: Navbar)
 
 **File**: `components/Navbar/Navbar.tsx`
 
@@ -287,7 +315,8 @@ Testing approach:
 | `lib/auth/AuthContext.tsx` | Core auth provider with Firebase listener |
 | `lib/auth/useUser.ts` | Public API for accessing auth state |
 | `lib/auth/types.ts` | TypeScript interfaces |
-| `app/layout.tsx` | Integration point - wraps app with provider |
+| `app/providers.tsx` | Client Component wrapper for providers |
+| `app/layout.tsx` | Integration point - wraps app with Providers |
 | `lib/auth/index.ts` | Barrel export for clean imports |
 | `tests/lib/auth/AuthContext.test.tsx` | Provider lifecycle tests |
 | `tests/lib/auth/useUser.test.tsx` | Hook error handling tests |
@@ -336,7 +365,8 @@ Expected: All tests pass with coverage for:
 
 6. **React DevTools**
    - Inspect component tree
-   - Verify AuthProvider wraps entire app
+   - Verify Providers component wraps entire app
+   - Verify AuthProvider is nested within Providers
    - Verify context value updates in real-time
 
 ## Out of Scope
