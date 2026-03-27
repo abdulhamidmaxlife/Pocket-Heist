@@ -36,16 +36,38 @@ The `(public)` layout adds `className="public"`; the `(dashboard)` layout includ
 
 `lib/firebase.ts` initializes Firebase and exports `auth` (Firebase Auth) and `db` (Firestore). Import from `@/lib/firebase`.
 
+**Environment Variables**: Firebase requires the following environment variables in `.env.local`:
+```
+NEXT_PUBLIC_FIREBASE_API_KEY
+NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN
+NEXT_PUBLIC_FIREBASE_PROJECT_ID
+NEXT_PUBLIC_FIREBASE_STORAGE_BUCKET
+NEXT_PUBLIC_FIREBASE_MESSAGING_SENDER_ID
+NEXT_PUBLIC_FIREBASE_APP_ID
+```
+
+**Firestore Rules**: `firestore.rules` contains security rules. Current rules are time-limited (expires April 8, 2026) and should be updated for production.
+
+### Auth State (`lib/auth`)
+
+`lib/auth` provides client-side auth state management:
+- `AuthProvider` — wraps the app via `app/providers.tsx` (a `"use client"` boundary needed for the Server Component root layout)
+- `useUser()` — returns `{ user: User | null, loading: boolean }` from Firebase `onAuthStateChanged`
+- Import from `@/lib/auth`
+
 ### Directory Structure
 
 ```
 app/
   (public)/          # Public pages and layout
   (dashboard)/       # Dashboard pages and layout with Navbar
-  layout.tsx         # Root layout
+  layout.tsx         # Root layout (Server Component; wraps with <Providers>)
+  providers.tsx      # Client boundary wrapping AuthProvider
   globals.css        # Global styles (Tailwind imports + theme tokens)
 components/          # Shared React components (barrel export pattern)
-lib/                 # Shared utilities (firebase.ts)
+lib/
+  firebase.ts        # Firebase init; exports auth, db
+  auth/              # Auth context, useUser hook, types
 tests/               # Test files mirroring app/components structure
 _specs/              # Feature specs (markdown)
 _plans/              # Feature implementation plans (markdown)
@@ -56,6 +78,7 @@ _plans/              # Feature implementation plans (markdown)
 Use `@/*` alias for all internal imports (maps to project root):
 ```typescript
 import { auth, db } from "@/lib/firebase"
+import { useUser } from "@/lib/auth"
 import Navbar from "@/components/Navbar"
 ```
 
@@ -87,6 +110,6 @@ import Navbar from "@/components/Navbar"
 - Functional components and React hooks only; no class components
 - React components to use barrel export pattern
 - Create Reusable components where possible; avoid one-off components
-- Use TypeScript with strict types; prefer interfaces and type aliases over `type` when defining object   shapes
+- Use TypeScript with strict types; prefer interfaces and type aliases over `type` when defining object shapes
 - No `any` type; prefer specific types or generics
 - Use `git switch -c` for new branches (not `git checkout`)
