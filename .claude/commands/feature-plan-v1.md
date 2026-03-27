@@ -1,4 +1,4 @@
----
+ ---
 description: Create a feature plan file using a spec file
 argument-hint: Spec file name (without extension)
 allowed-tools: Read, Write, Glob, Bash(git switch:*)
@@ -24,3 +24,5 @@ After the file is saved, respond to the user with a short summary in this exact 
 Branch: <branch_name>
 Plan file: @_plans/<feature_slug>.md
 Title: <feature_title>
+
+You DO NOT implement the plan, you only create the plan file. The implementation will be done in a separate task after this. Do not write any code for the implementation in this task, only write the plan.
