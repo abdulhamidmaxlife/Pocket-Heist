@@ -12,6 +12,19 @@
   @apply font-bold text-xl;
 }
 
+.siteNav ul {
+  @apply flex items-center gap-3;
+}
+
 svg.logo {
   display: inline-block;
+}
+
+/* Outlined button for logout */
+.btnOutline {
+  @apply inline-flex items-center px-6 py-2 rounded-2xl font-semibold text-heading border border-body transition-all hover:border-primary hover:text-primary;
+}
+
+.btnOutline:disabled {
+  @apply opacity-50 cursor-not-allowed hover:border-body hover:text-heading;
 }
