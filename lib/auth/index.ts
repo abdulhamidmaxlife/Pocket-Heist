@@ -1,3 +1,5 @@
 export { AuthProvider } from "./AuthContext"
 export { useUser } from "./useUser"
+export { signupUser } from "./signup"
 export type { AuthContextValue } from "./types"
+export type { SignupResult } from "./signup"

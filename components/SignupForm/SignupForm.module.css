@@ -10,6 +10,11 @@
   @apply flex flex-col mt-6;
 }
 
+.error {
+  @apply text-[--color-error] text-sm;
+  margin-bottom: 1rem;
+}
+
 .footerText {
   @apply text-center mt-6;
   color: var(--color-body);
