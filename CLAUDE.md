@@ -53,7 +53,11 @@ NEXT_PUBLIC_FIREBASE_APP_ID
 `lib/auth` provides client-side auth state management:
 - `AuthProvider` — wraps the app via `app/providers.tsx` (a `"use client"` boundary needed for the Server Component root layout)
 - `useUser()` — returns `{ user: User | null, loading: boolean }` from Firebase `onAuthStateChanged`
+- `signupUser(email, password)` — creates Firebase auth user, assigns random codename (from `lib/utils/codename`), updates profile, and creates Firestore user doc
 - Import from `@/lib/auth`
+
+**Firestore Data Model**:
+- `users/{uid}`: `{ id: string, codename: string }` — created during signup
 
 ### Directory Structure
 
