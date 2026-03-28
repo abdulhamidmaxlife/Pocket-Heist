@@ -25,4 +25,4 @@ Branch: <branch_name>
 Plan file: @_plans/<feature_slug>.md
 Title: <feature_title>
 
-You DO NOT implement the plan, you only create the plan file. The implementation will be done in a separate task after this. Do not write any code for the implementation in this task, only write the plan.
+You DO NOT implement the plan, you only create the plan file. The implementation will be done in a separate task after this. Do NOT write any code for the implementation in this task, only write the plan and save it in the folder @_plans/.
