@@ -22,3 +22,15 @@
 .footerLink:hover {
   @apply opacity-80;
 }
+
+.error {
+  @apply text-sm;
+  color: var(--color-error);
+  margin-bottom: 1rem;
+}
+
+.success {
+  @apply text-sm font-medium;
+  color: var(--color-success);
+  margin-bottom: 1rem;
+}

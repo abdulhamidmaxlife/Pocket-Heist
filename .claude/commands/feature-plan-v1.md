@@ -1,6 +1,6 @@
  ---
 description: Create a feature plan file using a spec file
-argument-hint: Spec file name (without extension)
+argument-hint: Spec file (markdown)
 allowed-tools: Read, Write, Glob, Bash(git switch:*)
 ---
 
